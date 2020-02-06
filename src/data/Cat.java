@@ -1,8 +1,25 @@
 public class Cat implements FelineInterface {
   String  name;
-  String  race ;
+  String  race;
     int year ;
 
+    @Override
+    public String toString() {
+        return "Cat{" +
+                "name='" + name + '\'' +
+                ", race='" + race + '\'' +
+                ", year=" + year +
+                '}';
+    }
+
+    public Cat() {
+    }
+
+    public Cat(String name, String race, int year) {
+        this.name = name;
+        this.race = race;
+        this.year = year;
+    }
 
     public void setName() {
 
