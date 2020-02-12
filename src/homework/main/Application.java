@@ -1,3 +1,8 @@
+package main;
+
+import data.Cat;
+import data.FelineInterface;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTextField;

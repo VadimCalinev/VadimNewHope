@@ -1,3 +1,5 @@
+package data;
+
 public interface FelineInterface {
 
     public void  setName(String x);
@@ -11,4 +13,8 @@ public interface FelineInterface {
     public void setYear(int x);
 
     public int getYear();
+
+    void setId(Integer id);
+
+    Integer getId();
 }
