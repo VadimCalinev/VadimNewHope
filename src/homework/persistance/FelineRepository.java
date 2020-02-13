@@ -2,6 +2,7 @@ package persistance;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import data.FelineInterface;
 import data.Cat;
@@ -32,14 +33,9 @@ public class FelineRepository implements FelineRepositoryInterface {
 
     @Override
     public FelineInterface findByName(String name) {
-
         for (FelineInterface f : felines) {
             if (f.findByName().equals(name)) {
-                try {
-                    return ((Cat) f).clone();
-                } catch (CloneNotSupportedException e) {
-                    e.printStackTrace();
-                }
+                return ((Cat) f).clone();
             }
         }
         return null;
@@ -49,42 +45,34 @@ public class FelineRepository implements FelineRepositoryInterface {
     public FelineInterface findByRace(String race) {
         for (FelineInterface f : felines) {
             if (f.findByRace().equals(race)) {
-                try {
-                    return ((Cat) f).clone();
-                } catch (CloneNotSupportedException e) {
-                    e.printStackTrace();
-                }
+                return ((Cat) f).clone();
             }
         }
         return null;
     }
 
+
     @Override
     public List<FelineInterface> findAll() {
-        for (FelineInterface f : felines) {
-            try {
-                felines2.add(((Cat) f).clone());
-            } catch (CloneNotSupportedException e) {
-                e.printStackTrace();
-            }
+        ArrayList<FelineInterface> felines2 = new ArrayList<>();
+        for (FelineInterface feline : felines) {
+            Cat cat = (Cat) feline;
+            felines2.add(cat.clone());
         }
         return felines2;
     }
 
+
+
     @Override
     public FelineInterface findById(Integer id) {
         for (FelineInterface f : felines) {
-            if (f.findById() == id) {
-                try {
-                    return ((Cat) f).clone();
-                } catch (CloneNotSupportedException e) {
-                    e.printStackTrace();
-                }
+            if (Objects.equals(f.findById(), id)) {
+                return ((Cat) f).clone();
             }
         }
         return null;
     }
-
 
     // For testing
     // Fill the list with data

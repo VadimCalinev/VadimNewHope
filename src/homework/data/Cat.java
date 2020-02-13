@@ -1,7 +1,7 @@
 package data;
 
 
-public class Cat implements FelineInterface, Cloneable {
+public class Cat implements FelineInterface, Cloneable{
 
   private String name;
   private String race;
@@ -69,12 +69,12 @@ public class Cat implements FelineInterface, Cloneable {
             '}';
   }
 
-  @Override
-  public FelineInterface clone() throws CloneNotSupportedException {
-    FelineInterface feline = (FelineInterface)super.clone();
-    feline.setByName(this.name);
-    feline.setByRace(this.race);
-    feline.setYear(this.year);
-    return feline;
+  public Cat clone() {
+    try {
+      return (Cat) super.clone();
+    } catch (CloneNotSupportedException e) {
+      return new Cat(this.id, this.name, this.race, this.year);
+    }
+
   }
 }
