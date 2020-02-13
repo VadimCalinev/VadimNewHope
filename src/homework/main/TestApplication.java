@@ -1,12 +1,15 @@
 package main;
 
+
 import data.FelineInterface;
 import persistance.FelineRepository;
 import persistance.FelineRepositoryInterface;
 
-public class TestApplication {
 
-    public static void main(String[] args) {
+
+public class TestApplication implements Cloneable{
+
+    public static void main(String[] args) throws CloneNotSupportedException {
 
         FelineRepositoryInterface fr = new FelineRepository();
         // ^^^^^^^^^^^^ | ^^ | ^^^^^^^
@@ -16,12 +19,12 @@ public class TestApplication {
 
         // System.out.println(fr.get(11));
 
-        FelineInterface cat = fr.get(22);
-        cat.setName("Masya");
+        FelineInterface cat = fr.findById(22);
+        cat.setByName("Masya");
 
 
 
-        for (FelineInterface f : fr.all()) {
+        for (FelineInterface f : fr.findAll()) {
             System.out.println(f);
         }
 

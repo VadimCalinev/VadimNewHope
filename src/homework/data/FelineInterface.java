@@ -2,13 +2,13 @@ package data;
 
 public interface FelineInterface {
 
-    public void  setName(String x);
+    public void  setByName(String x);
 
-    public String  getName();
+    public String  findByName();
 
-    public void setRace(String x);
+    public void setByRace(String x);
 
-    public String getRace();
+    public String findByRace();
 
     public void setYear(int x);
 
@@ -16,5 +16,5 @@ public interface FelineInterface {
 
     void setId(Integer id);
 
-    Integer getId();
+    Integer findById();
 }

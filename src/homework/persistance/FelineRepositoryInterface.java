@@ -12,8 +12,13 @@ public interface FelineRepositoryInterface {
 
     public boolean update(FelineInterface feline); // Сначала находим этот объект, потом перезаписываем
 
-    public List<FelineInterface> all(); // Будет возвращать Empty List, если объекта не найдено
+    public FelineInterface findByName(String name);
 
-    public FelineInterface get(Integer id); // Будет возвращать null, если объекта не найдено
+    public FelineInterface findByRace(String race);
+
+
+    public List<FelineInterface> findAll(); // Будет возвращать Empty List, если объекта не найдено
+
+    public FelineInterface findById(Integer id); // Будет возвращать null, если объекта не найдено
 
 }

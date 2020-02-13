@@ -28,11 +28,13 @@ public class Application {
 
     public static void initGui() {
         JButton saveBtn = new JButton("SAVE");
+        JTextField idInput = new JTextField();
         JTextField nameInput = new JTextField();
         JTextField raceInput = new JTextField();
         JTextField yearInput = new JTextField();
 
         JFrame window = new JFrame("Cat Database App");
+        window.getContentPane().add(idInput);
         window.getContentPane().add(nameInput);
         window.getContentPane().add(raceInput);
         window.getContentPane().add(yearInput);
@@ -53,14 +55,14 @@ public class Application {
             public void actionPerformed(ActionEvent e) {
 
 //accumulate
-                //catsNameList.add(nameInput.getText());
-               // catsNameList.add(nameInput.getText());
-                //catsNameList.add(nameInput.getText());
-                //System.out.println( catsNameList.get(catsNameList.size() - 1) );
-                //System.out.println("Cats in the collection " + catsNameList.size());
-                //nameInput.setText("");
-               // printList();
-                felineArray.add(new Cat(nameInput.getText(),raceInput.getText(), Integer.parseInt(yearInput.getText()) ));
+                catsNameList.add(nameInput.getText());
+                 catsNameList.add(nameInput.getText());
+                catsNameList.add(nameInput.getText());
+                System.out.println( catsNameList.get(catsNameList.size() - 1) );
+                System.out.println("Cats in the collection " + catsNameList.size());
+                nameInput.setText("");
+                 printList();
+                felineArray.add(new Cat(Integer.parseInt(idInput.getText()), nameInput.getText(),raceInput.getText(), Integer.parseInt(yearInput.getText()) ));
                 System.out.println( felineArray.get(felineArray.size() - 1) );
                 System.out.println("Cats in the collection " + felineArray.size());
                 nameInput.setText("");
