@@ -1,10 +1,12 @@
 package main;
 
 
+import data.Cat;
 import data.FelineInterface;
 import persistance.FelineRepository;
 import persistance.FelineRepositoryInterface;
 
+import java.util.ArrayList;
 
 
 public class TestApplication implements Cloneable{
@@ -30,7 +32,11 @@ public class TestApplication implements Cloneable{
 
         // getByName(String name) -> List<FelineInterface>
         // getByRace(String race) -> List<FelineInterface>
-
+        Cat cat1 = (Cat) fr.findById(1);
+        Cat cat2 = (Cat) cat1.clone();
+        cat2.setByName("another name");
+        System.out.println(cat1);
+        System.out.println(cat2);
     }
 
 }

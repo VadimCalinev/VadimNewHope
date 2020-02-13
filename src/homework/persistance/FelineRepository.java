@@ -9,6 +9,7 @@ import data.Cat;
 public class FelineRepository implements FelineRepositoryInterface {
 
     private List<FelineInterface> felines;
+    private List<FelineInterface> felines2;
 
     public FelineRepository() {
         felines = new ArrayList<>();
@@ -29,21 +30,30 @@ public class FelineRepository implements FelineRepositoryInterface {
         return false;
     }
 
+    @Override
     public FelineInterface findByName(String name) {
-        for (FelineInterface feline : felines) {
-            if (feline.findByName().equals(name)) {
-                Cat cat = (Cat) feline;
-                return cat.clone();
+
+        for (FelineInterface f : felines) {
+            if (f.findByName().equals(name)) {
+                try {
+                    return ((Cat) f).clone();
+                } catch (CloneNotSupportedException e) {
+                    e.printStackTrace();
+                }
             }
         }
         return null;
     }
 
+    @Override
     public FelineInterface findByRace(String race) {
-        for (FelineInterface feline : felines) {
-            if (feline.findByRace().equals(race)) {
-                Cat cat = (Cat) feline;
-                return cat.clone();
+        for (FelineInterface f : felines) {
+            if (f.findByRace().equals(race)) {
+                try {
+                    return ((Cat) f).clone();
+                } catch (CloneNotSupportedException e) {
+                    e.printStackTrace();
+                }
             }
         }
         return null;
@@ -51,20 +61,25 @@ public class FelineRepository implements FelineRepositoryInterface {
 
     @Override
     public List<FelineInterface> findAll() {
-        ArrayList<FelineInterface> cloneFelines = new ArrayList<>();
-        for (FelineInterface feline : felines) {
-            Cat cat = (Cat) feline;
-            cloneFelines.add(cat.clone());
+        for (FelineInterface f : felines) {
+            try {
+                felines2.add(((Cat) f).clone());
+            } catch (CloneNotSupportedException e) {
+                e.printStackTrace();
+            }
         }
-        return cloneFelines;
+        return felines2;
     }
 
     @Override
     public FelineInterface findById(Integer id) {
-        for (FelineInterface feline : felines) {
-            if (feline.findById().equals(id)) {
-                Cat cat = (Cat) feline;
-                return cat.clone();
+        for (FelineInterface f : felines) {
+            if (f.findById() == id) {
+                try {
+                    return ((Cat) f).clone();
+                } catch (CloneNotSupportedException e) {
+                    e.printStackTrace();
+                }
             }
         }
         return null;

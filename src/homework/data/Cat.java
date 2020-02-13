@@ -1,8 +1,7 @@
 package data;
-import java.io.*;
 
 
-public class Cat implements FelineInterface, Serializable {
+public class Cat implements FelineInterface, Cloneable {
 
   private String name;
   private String race;
@@ -71,41 +70,11 @@ public class Cat implements FelineInterface, Serializable {
   }
 
   @Override
-  public Cat clone() {
-    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-    ObjectOutputStream ous = null;
-    try {
-      ous = new ObjectOutputStream(baos);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-    //сохраняем состояние кота "не"Васьки в поток и закрываем его(поток)
-    try {
-      ous.writeObject(this);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-    try {
-      ous.close();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-    ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
-    ObjectInputStream ois = null;
-    try {
-      ois = new ObjectInputStream(bais);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-    //создаём кота для опытов и инициализируем его состояние "не с" Васькиным
-    try {
-      return (Cat) ois.readObject();
-    } catch (IOException | ClassNotFoundException e) {
-      e.printStackTrace();
-    }
-    return null;
+  public FelineInterface clone() throws CloneNotSupportedException {
+    FelineInterface feline = (FelineInterface)super.clone();
+    feline.setByName(this.name);
+    feline.setByRace(this.race);
+    feline.setYear(this.year);
+    return feline;
   }
-
-
-
 }
