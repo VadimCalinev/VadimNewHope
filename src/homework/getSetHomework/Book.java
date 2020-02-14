@@ -1,19 +1,20 @@
 package getSetHomework;
 
-public class Book implements ThingInteface
+public class Book implements ThingInterface
 {
+    private String name;
     private Integer pages;
     private String title;
     private String authorName;
     private Integer publishingYear;
     @Override
     public void setName(String name) {
-
+    this.name = name;
     }
 
     @Override
     public String getName() {
-        return null;
+        return name;
     }
 
     public Integer getPages() {

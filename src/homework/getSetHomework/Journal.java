@@ -1,17 +1,18 @@
 package getSetHomework;
 
-public class Journal implements ThingInteface {
+public class Journal implements ThingInterface {
+    private String name;
     private Integer pages;
     private String title;
     private String category;
     @Override
     public void setName(String name) {
-
+    this.name = name;
     }
 
     @Override
     public String getName() {
-        return null;
+        return name;
     }
 
     public Integer getPages() {
