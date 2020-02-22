@@ -1,16 +1,13 @@
-package persistance;
+package persistence;
+
+import data.Cat;
+import data.FelineInterface;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-
-import data.FelineInterface;
-import data.Cat;
 
 public class FelineRepository implements FelineRepositoryInterface {
-
     private List<FelineInterface> felines;
-    private List<FelineInterface> felines2;
 
     public FelineRepository() {
         felines = new ArrayList<>();
@@ -18,68 +15,77 @@ public class FelineRepository implements FelineRepositoryInterface {
 
     @Override
     public boolean save(FelineInterface feline) {
-        return false;
+        if (!update(feline))
+            felines.add(feline);
+        return true;
     }
 
     @Override
     public boolean delete(FelineInterface feline) {
+    	 ArrayList<FelineInterface> cloneFelines = new ArrayList<>();
+    		  if (findById(cloneFelines.getId())).equals(cloneFelines.getId())){
+    	felines.remove(feline);
+    	}
         return false;
     }
 
     @Override
     public boolean update(FelineInterface feline) {
+        for (FelineInterface oneFeline : felines) {
+            if (feline.getId().equals(oneFeline.getId())) {
+                felines.set(felines.indexOf(oneFeline), feline);
+                return true;
+            }
+        }
         return false;
     }
 
     @Override
-    public FelineInterface findByName(String name) {
-        for (FelineInterface f : felines) {
-            if (f.findByName().equals(name)) {
-                return ((Cat) f).clone();
-            }
-        }
-        return null;
-    }
-
-    @Override
-    public FelineInterface findByRace(String race) {
-        for (FelineInterface f : felines) {
-            if (f.findByRace().equals(race)) {
-                return ((Cat) f).clone();
-            }
-        }
-        return null;
-    }
-
-
-    @Override
-    public List<FelineInterface> findAll() {
-        ArrayList<FelineInterface> felines2 = new ArrayList<>();
+    public List<FelineInterface> findAll() throws CloneNotSupportedException {
+        ArrayList<FelineInterface> cloneFelines = new ArrayList<>();
         for (FelineInterface feline : felines) {
-            Cat cat = (Cat) feline;
-            felines2.add(cat.clone());
+            cloneFelines.add(feline.clone());
         }
-        return felines2;
+        return cloneFelines;
     }
 
-
-
     @Override
-    public FelineInterface findById(Integer id) {
-        for (FelineInterface f : felines) {
-            if (Objects.equals(f.findById(), id)) {
-                return ((Cat) f).clone();
+    public FelineInterface findById(Integer id) throws CloneNotSupportedException {
+        for (FelineInterface feline : felines) {
+            if (feline.getId().equals(id)) {
+                return feline.clone();
             }
         }
         return null;
+    }
+
+    public List<FelineInterface> findByName(String name) throws CloneNotSupportedException {
+    	ArrayList<FelineInterface> cloneFelinesNames = new ArrayList<>();
+        for (FelineInterface feline : felines) {
+        	if(name.equals(feline.getName())){
+        	cloneFelinesNames.add(feline.clone());
+        }
+        }
+        return cloneFelinesNames;
+           
+    }
+
+    public List<FelineInterface> findByRace(String race) throws CloneNotSupportedException {
+        	ArrayList<FelineInterface> cloneFelinesRace= new ArrayList<>();
+        	 for (FelineInterface feline : felines) {
+            if(race.equals(feline.getRace())){
+        	cloneFelinesRace.add(feline.clone());
+            }
+        }
+        return cloneFelinesRace;
+           
     }
 
     // For testing
     // Fill the list with data
     public void generate() {
         felines.add(new Cat(11, "Барсик", "Шотландская", 2019));
-        felines.add(new Cat(22, "Мурсик", "Британская", 2017));
+        felines.add(new Cat(22, "Murzik", "Britishe", 2017));
         felines.add(new Cat(33, "Шурсик", "Персидская", 2018));
     }
-
 }
